@@ -1,4 +1,3 @@
 - Add support for programming/verifying flash security data
 - Clean things up
 - Add comments
-- Add support for multi bank programming (need a multi bank device first)

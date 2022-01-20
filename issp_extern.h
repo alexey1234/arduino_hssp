@@ -37,8 +37,10 @@
 #define TARGET_DATABUFF_LEN    64 
 
 #include "Arduino.h"
+//#include <stdint.h>
 
-extern signed char fXRESInitializeTargetForISSP(void);
+extern void fXRESInitializeTargetForISSP(void);
+extern signed char SendInitVectors(void);
 extern signed char fPowerCycleInitializeTargetForISSP(void);
 extern signed char fEraseTarget(void);
 extern unsigned int iLoadTarget(void);
@@ -46,11 +48,17 @@ extern void ReStartTarget(void);
 extern int8_t getSiliconID(uint8_t * buff);
 extern void setAddress(unsigned char, unsigned char);
 extern byte readByte(unsigned char bTargetAddress);
-extern signed char fAccTargetBankChecksum(unsigned int*);
+extern byte readReg(unsigned char bTargetReg);
+extern int Exec(const unsigned char *opcodes);
+extern void writeReg(unsigned char bTargetReg, unsigned char bValue);
+extern void writeByte(unsigned char bTargetAddress, unsigned char bValue);
+extern signed char fAccTargetBankChecksum(unsigned int*, unsigned char block_count);
+extern void send_checksum_v(void);
 extern void SetBankNumber(unsigned char);
 extern signed char fProgramTargetBlock(unsigned char, unsigned char);
 extern signed char fVerifyTargetBlock(unsigned char, unsigned char);
 extern signed char fSecureTargetFlash(void);
+extern signed char fVerifySecurity(void);
 
 extern void LoadArrayWithSecurityData(unsigned char, unsigned char, unsigned char);
 
@@ -126,4 +134,3 @@ extern    unsigned char    bTargetDataPtr;
 extern    unsigned char    abTargetDataOUT[TARGET_DATABUFF_LEN];
 
 #endif  //(INC_ISSP_EXTERN)
-

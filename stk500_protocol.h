@@ -33,7 +33,8 @@
 #define Cmnd_STK_SET_DEVICE        0x42  // ' '
 #define Cmnd_STK_SET_DEVICE_EXT    0x45  // ' '			
 
-#define Cmnd_STK_ENTER_PROGMODE    0x50  // ' '
+#define Cmnd_STK_ENTER_PROGMODE    0x49  // ' '
+#define Cmnd_STK_INIT_PROGMODE     0x50  // ' '
 #define Cmnd_STK_LEAVE_PROGMODE    0x51  // ' '
 #define Cmnd_STK_CHIP_ERASE        0x52  // ' '
 #define Cmnd_STK_CHECK_AUTOINC     0x53  // ' '
@@ -56,7 +57,15 @@
 #define Cmnd_STK_READ_SIGN         0x75  // ' '
 #define Cmnd_STK_READ_OSCCAL       0x76  // ' '
 #define Cmnd_STK_READ_FUSE_EXT     0x77  // ' '		
-#define Cmnd_STK_READ_OSCCAL_EXT   0x78  // ' '     
+#define Cmnd_STK_READ_OSCCAL_EXT   0x78  // ' '
+#define Cmnd_STK_READ_REG          0x79  // ' '
+#define Cmnd_STK_WRITE_REG         0x80  // ' '
+#define Cmnd_STK_READ_MEM          0x81  // ' '
+#define Cmnd_STK_WRITE_MEM         0x82  // ' '
+#define Cmnd_STK_EXEC_OPCODES      0x83  // ' '
+#define Cmnd_STK_RUN_CSUM          0x84  // ' '
+#define Cmnd_STK_START_CSUM        0x85  // ' '
+#define Cmnd_STK_READ_SECURITY     0x86  // ' '
 
 // *****************[ STK Parameter constants ]***************************
 

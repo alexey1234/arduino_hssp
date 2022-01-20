@@ -315,4 +315,3 @@ void RemoveTargetVDD(void)
 {
     digitalWrite(TARGET_VDD, LOW);
 }
-

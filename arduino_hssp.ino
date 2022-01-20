@@ -32,6 +32,21 @@
 //---------------------------------------------------------------------------*/
 
 /* ############################################################################
+   ######  This version is configured to program HOTAS Warthog throttle  ######
+   #####################   with an Arduino Pro Micro   ########################
+   ##########################################################################*/
+
+/* Pinout:
+   PCB - Arduino
+   -------------
+     1 - RAW
+     2 - GND
+     3 - 4
+     4 - 8
+     5 - 9
+*/
+
+/* ############################################################################
    ###################  CRITICAL PROJECT CONSTRAINTS   ########################
    ############################################################################ 
 
@@ -312,9 +327,6 @@
  freqency. In other words, if the maximum SCLK frequency is 8MHz, there can be
  no high or low pulses shorter than 1/(2*8MHz), or 62.5 nsec.
 
-/* ############################################################################
-   ############################################################################ 
-
 (((((((((((((((((((((((((((((((((((((()))))))))))))))))))))))))))))))))))))) */
 
 
@@ -323,6 +335,9 @@
 //                               C main line
 //----------------------------------------------------------------------------
 */
+
+#define CY8C24x94
+#define TARGET_VOLTAGE_IS_5V
 
 // ------ Declarations Associated with ISSP Files & Routines -------
 //     Add these to your project as needed.
@@ -348,6 +363,7 @@ int here;
 uint8_t buff[256]; // global block storage
 unsigned char bit;
 volatile unsigned char *out;
+int psocisp();
 
 uint8_t getch() {
   while(!Serial.available());
@@ -422,12 +438,25 @@ int8_t erase_chip() {
 // Initialize the Host & Target for ISSP operations
 int8_t start_pmode() {
   // Acquire the device through reset or power cycle
-  int8_t result;
+  int8_t result = PASS;
   if(param.prog_mode == RESET_MODE) {
-    result = fXRESInitializeTargetForISSP();
+    fXRESInitializeTargetForISSP();
   } else {
     result = fPowerCycleInitializeTargetForISSP();
   }
+  
+  if (Sync_CRC_EOP == getch()) {
+      Serial.print((char)Resp_STK_INSYNC);
+      if (result)
+            Serial.print((char) Resp_STK_FAILED);
+      else
+            Serial.print((char) Resp_STK_OK);
+  } else {
+    error++;
+    Serial.print((char)Resp_STK_NOSYNC);
+  }
+  
+
   pmode = 1;
   return result;
 }
@@ -451,9 +480,93 @@ void read_signature() {
 
 char flash_read_page(int length) {
   for (uint8_t x = 0; x < length; x++) {
-    Serial.write(readByte(x));
+    Serial.write(readByte(0x80+x));
   }
   return Resp_STK_OK;
+}
+
+void read_mem() {
+  char result = (char)Resp_STK_FAILED;
+  int addr = getch();
+  if (Sync_CRC_EOP != getch()) {
+    error++;
+    Serial.print((char) Resp_STK_NOSYNC);
+    return;
+  }
+  Serial.print((char) Resp_STK_INSYNC);
+  result = readByte(addr);
+  Serial.print(result);
+  Serial.print((char) Resp_STK_OK);
+  return;
+}
+
+void write_mem() {
+  int addr = getch();
+  int value = getch();
+  if (Sync_CRC_EOP != getch()) {
+    error++;
+    Serial.print((char) Resp_STK_NOSYNC);
+    return;
+  }
+  writeByte(addr, value);
+  Serial.print((char) Resp_STK_INSYNC);
+  Serial.print((char) Resp_STK_OK);
+  return;
+}
+
+void read_reg() {
+  char result = (char)Resp_STK_FAILED;
+  int addr = getch();
+  if (Sync_CRC_EOP != getch()) {
+    error++;
+    Serial.print((char) Resp_STK_NOSYNC);
+    return;
+  }
+  Serial.print((char) Resp_STK_INSYNC);
+  result = readReg(addr);
+  Serial.print(result);
+  Serial.print((char) Resp_STK_OK);
+  return;
+}
+
+uint8_t read_romx(uint16_t address) {
+    writeReg(0xF0, address>>8); // A = 0
+    writeReg(0xF3, address&0xFF); // X = 0
+    unsigned char opc[3] = {0x28,0x30, 0x40}; //ROMX HALT NOP
+    Exec(opc);
+    return readReg(0xF0);
+}
+
+
+void write_reg() {
+  int addr = getch();
+  int value = getch();
+  if (Sync_CRC_EOP != getch()) {
+    error++;
+    Serial.print((char) Resp_STK_NOSYNC);
+    return;
+  }
+  writeReg(addr, value);
+  Serial.print((char) Resp_STK_INSYNC);
+  Serial.print((char) Resp_STK_OK);
+  return;
+}
+
+void exec_opcodes() {
+  unsigned char opc[3];
+  opc[0] = getch();
+  opc[1] = getch();
+  opc[2] = getch();
+
+  if (Sync_CRC_EOP != getch()) {
+    error++;
+    Serial.print((char) Resp_STK_NOSYNC);
+    return;
+  }
+  Exec(opc);
+  Serial.print((char) Resp_STK_INSYNC);
+  Serial.print((char) Resp_STK_OK);
+  return;
 }
 
 void read_page() {
@@ -513,23 +626,30 @@ void program_page() {
 void setup() {
   bit = digitalPinToBitMask(SDATA_PIN);
   out = portOutputRegister(digitalPinToPort(SDATA_PIN));
-  param.prog_mode = POWER_CYCLE_MODE;
+  param.prog_mode = RESET_MODE;
   param.targ_voltage = TARGET_VOLTAGE_5V;
-  param.chksm_setup = CHECKSUM_SETUP_21_23_27_TST110_TMG110;
+  param.chksm_setup = CHECKSUM_SETUP_22_24_28_29_TST120_TMG120_TMA120;
   param.prgm_block = PROGRAM_BLOCK_21_22_23_24_28_29_TST_TMG_TMA;
   param.multi_bank = false;
-  Serial.begin(57600);
+  Serial.begin(115200);
+
+    pinMode(LED_BUILTIN, OUTPUT);
+    
 }
 
 void loop() {
+
   if (Serial.available()) {
     psocisp();
+    digitalWrite(LED_BUILTIN, !digitalRead(LED_BUILTIN));
   }
 }
 
 int psocisp() {
-  uint8_t data, low, high;
+  uint8_t res, block_count;
+  uint32_t checksum_delay = 0, ms_delay = 0;
   uint8_t ch = getch();
+  unsigned int csum = 0;
   switch (ch) {
     case Cmnd_STK_GET_SYNC: // signon
       error = 0;
@@ -556,7 +676,10 @@ int psocisp() {
       break;
     case Cmnd_STK_ENTER_PROGMODE:
       start_pmode();
-      empty_reply();
+      break;
+    case Cmnd_STK_INIT_PROGMODE:
+      res = SendInitVectors();
+      start_pmode();
       break;
     case Cmnd_STK_CHIP_ERASE:
       erase_chip();
@@ -566,7 +689,7 @@ int psocisp() {
       here = getch();
       here += 256 * getch();
       here /= 64;
-      setAddress(0, (here)); // TODO support for multiple banks
+      setAddress(here / BLOCKS_PER_BANK, (here % BLOCKS_PER_BANK)); 
       empty_reply();
       break;
     case Cmnd_STK_PROG_PAGE:
@@ -574,6 +697,53 @@ int psocisp() {
       break;
     case Cmnd_STK_READ_PAGE:
       read_page();    
+      break;
+    case Cmnd_STK_READ_MEM:
+      read_mem();
+      break;
+    case Cmnd_STK_WRITE_MEM:
+      write_mem();
+      break;
+    case Cmnd_STK_READ_REG:
+      read_reg();
+      break;
+    case Cmnd_STK_READ_SECURITY:
+      res = fVerifySecurity();
+      Serial.print((char) Resp_STK_INSYNC);
+      Serial.print((char) res);
+      Serial.print((char) Resp_STK_OK);
+      break;
+    case Cmnd_STK_WRITE_REG:
+      write_reg();
+      break;
+    case Cmnd_STK_EXEC_OPCODES:
+      exec_opcodes();
+      break;
+    case Cmnd_STK_RUN_CSUM:
+      block_count = getch();
+      fAccTargetBankChecksum(&csum, block_count);
+      Serial.print((char) Resp_STK_INSYNC);
+      Serial.print((char)(csum&0xFF));
+      Serial.print((char)((csum>>8)&0xFF));
+      Serial.print((char) Resp_STK_OK);
+      break;
+    case Cmnd_STK_START_CSUM:
+      checksum_delay = ((uint32_t)getch())<<24;
+      checksum_delay |= ((uint32_t)getch())<<16;
+      checksum_delay |= ((uint32_t)getch())<<8;
+      checksum_delay |= getch();
+      if(checksum_delay > 10000) {
+         ms_delay = checksum_delay/1000;
+         checksum_delay = checksum_delay%1000;
+      }
+      else {
+         ms_delay = 0;
+      }
+      send_checksum_v();
+      if (checksum_delay)
+          delayMicroseconds(checksum_delay);
+      delay(ms_delay);
+      start_pmode();
       break;
     case Cmnd_STK_LEAVE_PROGMODE:
       error=0;
@@ -594,9 +764,11 @@ int psocisp() {
       // anything else we will return Resp_STK_UNKNOWN
     default:
       error++;
-      if (Sync_CRC_EOP == getch()) 
+      if (Sync_CRC_EOP == getch())
         Serial.print((char)Resp_STK_UNKNOWN);
       else
         Serial.print((char)Resp_STK_NOSYNC);
   }
+
+  return 0;
 }

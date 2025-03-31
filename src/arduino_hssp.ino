@@ -626,22 +626,25 @@ void program_page() {
 void setup() {
   bit = digitalPinToBitMask(SDATA_PIN);
   out = portOutputRegister(digitalPinToPort(SDATA_PIN));
+  SetTargetVDDStrong();
+  RemoveTargetVDD();
+  RemoveTargetVDD();
   param.prog_mode = RESET_MODE;
   param.targ_voltage = TARGET_VOLTAGE_5V;
   param.chksm_setup = CHECKSUM_SETUP_22_24_28_29_TST120_TMG120_TMA120;
   param.prgm_block = PROGRAM_BLOCK_21_22_23_24_28_29_TST_TMG_TMA;
   param.multi_bank = false;
-  Serial.begin(115200);
-
-    pinMode(LED_BUILTIN, OUTPUT);
-    
+  Serial.begin(58600);
+  pinMode(LED_BUILTIN, OUTPUT);
+  digitalWrite  
 }
 
 void loop() {
 
   if (Serial.available()) {
+	ApplyTargetVDD(); 
     psocisp();
-    digitalWrite(LED_BUILTIN, !digitalRead(LED_BUILTIN));
+    //digitalWrite(LED_BUILTIN, !digitalRead(LED_BUILTIN));
   }
 }
 
@@ -650,6 +653,7 @@ int psocisp() {
   uint32_t checksum_delay = 0, ms_delay = 0;
   uint8_t ch = getch();
   unsigned int csum = 0;
+  digitalWrite(LED_BUILTIN, HIGH);
   switch (ch) {
     case Cmnd_STK_GET_SYNC: // signon
       error = 0;
@@ -769,6 +773,6 @@ int psocisp() {
       else
         Serial.print((char)Resp_STK_NOSYNC);
   }
-
+	digitalWrite(LED_BUILTIN, LOW);
   return 0;
 }

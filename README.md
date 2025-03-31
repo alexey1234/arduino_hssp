@@ -12,7 +12,7 @@ Also I'll add schematic for my programmer, because my boards needs more then 150
 
 ## Usage
 
-Clone the code into a folder called 'arduino_hssp', open the project in the Arduino IDE and compile and program it. Connect your PSoC 1 device as follows (can be changed in issp_defs.h):
+Clone the code from src into a folder called 'arduino_hssp', open the project in the Arduino IDE and compile and program it. Connect your PSoC 1 device as follows (can be changed in issp_defs.h):
 ```
 Pin   - PCB - Arduino
 ------------------------

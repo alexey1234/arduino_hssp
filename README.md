@@ -1,12 +1,14 @@
 # arduino_hssp
 
-This is a fork of the original arduino_hssp https://github.com/acidwise/arduino_hssp decause I want to rebuild it for Arduino nano and give it to work/
+This is a fork of the original arduino_hssp https://github.com/acidwise/arduino_hssp because I want to rebuild it for Arduino nano and give it to work.
 
-As for me no original branch have problem with TARGET VDD pin, it not work now.
+As for me no original branch have problem with TARGET VDD pin.
+
+Also board work with tty speed 56800 bod maximum, but maybe because I have usb cable 3 meters (?)
 
 I will store scetch into src folder
 
-Also I'll add schematic for my programmer, because my boards needs more then 150 ma power current from 5V 
+Also I'll add schematic for my programmer, because my boards needs more then 150 ma power current from 5V - pin of Arduino must give no more 40ma
 
 ## Usage
 

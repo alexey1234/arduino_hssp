@@ -16,8 +16,8 @@ Clone the code from src into a folder called 'arduino_hssp', open the project in
 ```
 Pin   - PCB - Arduino
 ------------------------
-Power -  1  -  RAW
-GND   -  2  -  GND
+GND   -  1  -  GND
+Power -  2  -  RAW
 XRES  -  3  -  4
 SCLK  -  4  -  8
 SDATA -  5  -  9

@@ -1,0 +1,33 @@
+Currently in my building not work setup and cycle TARGET Vdd
+
+I will wrote here about my work
+
+
+I will rebuilt programmer? because I connect to board which have capacitors and other chips, so I mus to give more power to this pin.
+
+I want replace lm7805 to switched supply 
+
+fPowerCycleInitializeTargetForISSP(void) from issp_routines - after set target voltage it wait 1ms which not really
+ ReStartTarget(void) from issp_routines
+	fragment
+	RemoveTargetVDD();
+    delayMicroseconds(POWER_CYCLE_DELAY); //150 usec delay is fantastic? not will work
+    ApplyTargetVDD();
+used into main progra  void end_pmode()
+
+digitalread arduino take 4uS
+analog Read arduino takes about 0.1usec
+digitalwrite arduino take about  4uSec
+
+May be need use more fast command, for example https://github.com/mikaelpatel/Arduino-GPIO/tree/master
+or use assembler into arduinoIDE assembler
+
+void somefunction(void) __attribute__((naked))
+{
+  asm volatile ("
+
+ ; your assembly code here
+
+  ");
+}
+https://www.nongnu.org/avr-libc/user-manual/inline_asm.html

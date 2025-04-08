@@ -11,3 +11,12 @@ There are  many capacitors on the board also , so turning these 5 Volts on and o
 
 ![](./my%20target%20board.jpg)
 
+## My programmer board schematic
+
+![](./programmer_V2.jpg)
+
+I see more then 30 Amper peek curents during charge and discharge capacitor 100 uF on output.
+
+Time for charge and discharge some like 45 usec, so I add comparator for make delay as need.
+
+I begin rewrite Arduino programm 

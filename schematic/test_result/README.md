@@ -1,4 +1,4 @@
-This is result of test  my  programmer hardware 
+# This is result of test  my  programmer hardware 
 
 ![](./test_hardware.jpg)
 
@@ -17,3 +17,6 @@ will be longer, which means it is necessary to introduce a command delay adjustm
 
 I will use both methods - the delay can be adjusted and stored in its eeprom plus I make feedback for TARGET VOLTAGE
 
+# My programmer
+
+![](./programmer_hard.jpg)

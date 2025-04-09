@@ -19,6 +19,6 @@ I see more then 30 Amper peek curents during charge and discharge capacitor 100 
 
 Time for charge and discharge some like 45 usec, so I add comparator for make delay as need.
 
-[See test results](/test_result/README.md)
+[See test results](./schematic/test_result/README.md)
 
 I begin rewrite Arduino programm 

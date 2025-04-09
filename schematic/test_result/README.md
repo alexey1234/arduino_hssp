@@ -2,7 +2,7 @@
 
 This is result of test  my  programmer hardware 
 
-![](./my%20target%20board.jpg)
+![](./test_hardware.jpg)
 
 
 

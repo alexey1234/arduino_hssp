@@ -10,7 +10,8 @@ I will store scetch into src folder
 
 Also I'll add schematic for my programmer, because my boards needs more then 150 ma power current from 5V - pin of Arduino must give no more 40ma
 
-# Attension
+```diff
+# Attention
 ```diff
 -Software under work now at 16 Apr 2025. I will remove this message when it will ready for use
 ```

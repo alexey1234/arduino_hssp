@@ -12,9 +12,9 @@ Also I'll add schematic for my programmer, because my boards needs more then 150
 
 
 # Attention
-
-$${\color{red}-Software under work now at 16 Apr 2025. I will remove this message when it will ready for use}SS
-
+```diff
+-Software under construction  now at 16 Apr 2025. I will remove this message when it will ready for use
+```
 
 ## Usage
 

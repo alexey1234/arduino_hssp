@@ -10,11 +10,16 @@ Clone the code into a folder called 'arduino_hssp', open the project in the Ardu
 ```
 Pin   - PCB - Arduino
 ------------------------
-Power -  1  -  RAW
+Power -  1  -  TARGET SUPPLY, pin 12 with power switch 
 GND   -  2  -  GND
-XRES  -  3  -  4
+XRES  -  3  -  10
 SCLK  -  4  -  8
 SDATA -  5  -  9
+__________
+used with my hardware board
+comparators pins   --> 6
+setup pin 		   --> 7
+voltage check pin ---> A0
 ```
 Use psocdude by miracoli https://github.com/miracoli/psocdude (requires linux) to flash the firmware: 
 ```

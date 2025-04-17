@@ -25,6 +25,7 @@ psocdude -C psocdude.conf -p CY8C24894 -c arduino -P /dev/ttyACM0 -b 115200 -U f
 ## Project status
 Tested and working with:
 * Arduino Leonardo (Pro Micro)
+* Arduino/Seeeduino NANO, arduino UNO
 * CY8C21434
 * CY8C24894
 

@@ -680,6 +680,7 @@ void setup() {
     param.prgm_block = PROGRAM_BLOCK_21_22_23_24_28_29_TST_TMG_TMA;
     param.multi_bank = false;
     
+    old_tick = millis();
 }
 
 void loop() {

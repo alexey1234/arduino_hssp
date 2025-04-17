@@ -86,7 +86,7 @@ ldd psocdude
 
 ```
 
-In 2 machines I cannot compile libhid? dut I think it no need
+In 2 machines I cannot compile libhid, but I think it no need for Arduino|Seeeduino nano
 ```diff
 Configuration summary:
 

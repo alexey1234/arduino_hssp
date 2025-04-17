@@ -44,8 +44,27 @@ My linux x86 computer
   Operating System: Ubuntu 18.04.6 LTS
             Kernel: Linux 4.15.0-213-generic
       Architecture: x86
+
 ```
-psocdude use libraries 	  
+My Linux x64 computer
+```
+alexey@alexey-NUC14RVH-B:~$ hostnamectl
+ Static hostname: alexey-NUC14RVH-B
+       Icon name: computer-desktop
+         Chassis: desktop 🖥️
+      Machine ID: b6cede8aef754511813cc9aacaeef8e3
+         Boot ID: a52db3b2bb8b45c58826d8f83b03c50a
+Operating System: Ubuntu 24.04.2 LTS              
+          Kernel: Linux 6.11.0-21-generic
+    Architecture: x86-64
+ Hardware Vendor: ASUSTeK COMPUTER INC.
+  Hardware Model: NUC14RVH-B
+Firmware Version: RVRPLR30.0035.2024.0814.1037
+   Firmware Date: Wed 2024-08-14
+    Firmware Age: 8month 3d
+```
+
+psocdude x86 use libraries 	  
 ```	  
  ldd psocdude
         linux-gate.so.1 (0xb7efe000)
@@ -54,4 +73,15 @@ psocdude use libraries
         libc.so.6 => /lib/i386-linux-gnu/libc.so.6 (0xb7c96000)
         libz.so.1 => /lib/i386-linux-gnu/libz.so.1 (0xb7c77000)
         /lib/ld-linux.so.2 (0xb7f00000)
+```
+psocdude x64 use libraries
+```
+ldd psocdude
+	 linux-vdso.so.1 (0x0000746178b65000)
+	 libelf.so.1 => /lib/x86_64-linux-gnu/libelf.so.1 (0x0000746178afe000)
+	 libc.so.6 => /lib/x86_64-linux-gnu/libc.so.6 (0x0000746178800000)
+ 	libz.so.1 => /lib/x86_64-linux-gnu/libz.so.1 (0x0000746178ae2000)
+	 libzstd.so.1 => /lib/x86_64-linux-gnu/libzstd.so.1 (0x0000746178a28000)
+	 /lib64/ld-linux-x86-64.so.2 (0x0000746178b67000)
+
 ```

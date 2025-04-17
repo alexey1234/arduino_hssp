@@ -338,13 +338,15 @@
 
 #define CY8C24x94
 #define TARGET_VOLTAGE_IS_5V
-
+#define SERIAL_TX_BUFFER_SIZE 256
+//added volatile uint8_t POWER_CYCLE_DELAY = 150;
 // ------ Declarations Associated with ISSP Files & Routines -------
 //     Add these to your project as needed.
-#include "issp_extern.h"
+#include "issp_extern.h" // 
 #include "issp_defs.h"
 #include "issp_errors.h"
 #include "stk500_protocol.h"
+#include <EEPROM.h>
 
 #define HWVER 2
 #define SWMAJ 1
@@ -354,6 +356,7 @@ unsigned char bBankCounter;
 unsigned int  iBlockCounter;
 unsigned int  iChecksumData;
 unsigned int  iChecksumTarget;
+unsigned char comspeed;
 
 parameter param;
 
@@ -364,6 +367,9 @@ uint8_t buff[256]; // global block storage
 unsigned char bit;
 volatile unsigned char *out;
 int psocisp();
+unsigned long old_tick = 0;
+
+
 
 uint8_t getch() {
   while(!Serial.available());
@@ -622,33 +628,77 @@ void program_page() {
   Serial.print((char)Resp_STK_FAILED);
   return;
 }
+void prepare_target_reconnect() {
+	RemoveTargetVDD();
+	SetSCLKHiZ();
+	SetSDATAHiZ();
+	pinMode(XRES_PIN, INPUT);
+	digitalWrite(XRES_PIN, LOW);
+}
+
+	
 
 void setup() {
-  bit = digitalPinToBitMask(SDATA_PIN);
-  out = portOutputRegister(digitalPinToPort(SDATA_PIN));
-  SetTargetVDDStrong();
-  RemoveTargetVDD();
-  param.prog_mode = RESET_MODE;
-  param.targ_voltage = TARGET_VOLTAGE_5V;
-  param.chksm_setup = CHECKSUM_SETUP_22_24_28_29_TST120_TMG120_TMA120;
-  param.prgm_block = PROGRAM_BLOCK_21_22_23_24_28_29_TST_TMG_TMA;
-  param.multi_bank = false;
-  Serial.begin(58600);
-  pinMode(LED_BUILTIN, OUTPUT);
-  digitalWrite  (LED_BUILTIN, LOW);
+	bit = digitalPinToBitMask(SDATA_PIN);
+	out = portOutputRegister(digitalPinToPort(SDATA_PIN));
+	SetTargetVDDStrong();
+	pinMode(SETUP_PIN, INPUT_PULLUP);
+	pinMode(COMP_PIN, INPUT_PULLUP);
+	pinMode(LED_BUILTIN, OUTPUT);
+	digitalWrite  (LED_BUILTIN, LOW);
+	prepare_target_reconnect();
+	while (!digitalRead(SETUP_PIN)){
+		Serial.begin(57600);
+		set_prog();
+		Serial.flush();
+		Serial.end();
+		} 
+	//setup for works
+	
+	comspeed = EEPROM.read(0);
+	switch (comspeed) {
+			case 0:
+				Serial.begin(115200);
+			break;
+			case 1:
+				Serial.begin(57600);
+			break;
+			case 2:
+				Serial.begin(38400);
+			break;
+			case 3:
+				Serial.begin(19200);
+			break;
+			default:
+			 Serial.begin(57600);
+			break;
+	}
+	
+    param.prog_mode = RESET_MODE;
+    param.targ_voltage = TARGET_VOLTAGE_5V;
+    param.chksm_setup = CHECKSUM_SETUP_22_24_28_29_TST120_TMG120_TMA120;
+    param.prgm_block = PROGRAM_BLOCK_21_22_23_24_28_29_TST_TMG_TMA;
+    param.multi_bank = false;
+    
 }
 
 void loop() {
+	
 
   if (Serial.available()) {
 	digitalWrite(LED_BUILTIN, HIGH);
 	ApplyTargetVDD(); 
-    psocisp();
+	psocisp();
 	digitalWrite(LED_BUILTIN, LOW);
-    //digitalWrite(LED_BUILTIN, !digitalRead(LED_BUILTIN));
-  }
+	old_tick = millis();
+  } else {
+	unsigned long current_tick = millis();
+	if (current_tick - old_tick >= 3000) {
+			old_tick = current_tick;
+			prepare_target_reconnect();
+		}
+	}
 }
-
 int psocisp() {
   uint8_t res, block_count;
   uint32_t checksum_delay = 0, ms_delay = 0;
@@ -776,4 +826,7 @@ int psocisp() {
   }
 	
   return 0;
+
 }
+
+

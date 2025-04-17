@@ -46,6 +46,8 @@ unsigned char  bTargetID[2];
 
 unsigned char  fIsError;
 
+
+
 /* ((((((((((((((((((((( LOW-LEVEL ISSP SUBROUTINE SECTION ))))))))))))))))))))
    (( The subroutines in this section use functions from the C file          ))
    (( ISSP_Drive_Routines.c. The functions in that file interface to the     ))
@@ -695,8 +697,9 @@ void ReStartTarget(void)
     SetSDATAHiZ();
     // Cycle power on the target to cause a reset
     RemoveTargetVDD();
-    delayMicroseconds(POWER_CYCLE_DELAY);
+    delayMicroseconds(DELAY100us);
     ApplyTargetVDD();
+	delayMicroseconds(DELAY100us);
   }
 }
 

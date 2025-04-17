@@ -47,7 +47,7 @@
 // device to create a power reset after programming has been completed. The
 // actual time of this delay will vary from system to system depending on the
 // bypass capacitor size.  A delay of 150 usec is used here.
-#define POWER_CYCLE_DELAY 150
+//#define POWER_CYCLE_DELAY 150
 
 // DELAY_100us delays 100 usec. This is used in fXRESInitializeTargetForISSP to
 // time the wait for Vdd to become stable after a power up.  A loop runs 10 of

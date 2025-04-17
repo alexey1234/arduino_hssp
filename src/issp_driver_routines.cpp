@@ -31,7 +31,7 @@
 // license agreement.
 //
 //--------------------------------------------------------------------------
-
+#include <EEPROM.h>
 #include "issp_defs.h"
 #include "issp_extern.h"
 #include "issp_errors.h"
@@ -299,7 +299,18 @@ void SetTargetVDDStrong(void)
 // ****************************************************************************
 void ApplyTargetVDD(void)
 {
+	volatile uint8_t POWER_CYCLE_DELAY_METHOD = EEPROM.read(9);
+	uint16_t POWER_CYCLE_DELAY=0;
+	EEPROM.get(10,POWER_CYCLE_DELAY);
     digitalWrite(TARGET_VDD, HIGH);
+	delayMicroseconds(10);
+	if (POWER_CYCLE_DELAY_METHOD == 0 ) 
+	{
+			while (bitRead(PIND, PIND6)==HIGH){}
+			delayMicroseconds(100);
+	} else {
+		delayMicroseconds(POWER_CYCLE_DELAY);
+	}
 }
 
 // ********************* LOW-LEVEL ISSP SUBROUTINE SECTION ********************
@@ -311,7 +322,21 @@ void ApplyTargetVDD(void)
 // RemoveTargetVDD()
 // Remove power from the target PSoC's Vdd pin.
 // ****************************************************************************
+//temporary disabled
+
 void RemoveTargetVDD(void)
 {
+	volatile uint8_t POWER_CYCLE_DELAY_METHOD = EEPROM.read(9);
+	uint16_t POWER_CYCLE_DELAY=0;
+	EEPROM.get(10,POWER_CYCLE_DELAY);
     digitalWrite(TARGET_VDD, LOW);
+	delayMicroseconds(10);
+	if (POWER_CYCLE_DELAY_METHOD == 0 ) {
+		while (bitRead(PIND, PIND6)==HIGH){}
+		delayMicroseconds(100);
+	} else {
+		delayMicroseconds(POWER_CYCLE_DELAY);
+	}
 }
+
+

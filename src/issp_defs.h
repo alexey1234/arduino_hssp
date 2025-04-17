@@ -130,7 +130,9 @@ extern volatile unsigned char *out;
 // ****************************************************************************
 #define SDATA_PIN   9
 #define SCLK_PIN    8
-#define XRES_PIN    4
-#define TARGET_VDD  16
-#define TP_PIN      14
+#define XRES_PIN    10
+#define COMP_PIN    6
+#define TARGET_VDD  12
+#define TP_PIN      11
+#define SETUP_PIN   7
 #endif //(INC_ISSP_DEFS)

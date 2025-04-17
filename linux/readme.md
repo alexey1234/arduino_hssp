@@ -2,6 +2,8 @@
 
 If you have troubles with compile psocdude branch by Dirk Petrautzki  https://github.com/miracoli/psocdude I put compilled binaries for x86 and x64 UBUNTUs
 
+# HOWTO
+
 Just download binary.zip and psocdude.conf.zip
 
 Unzip its

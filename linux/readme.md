@@ -11,28 +11,30 @@ Unzip its
 Check  unzipped bynary with command ldd how it will work on your computer
 
 If all libraries presents you can simple copy files to folders
-
+```
 cp psocdude /usr/local/bin/
-
+```
+```
 cp psocdude.conf /usr/local/etc/
-
+```
 Check permisions for bynary 
-
+```
  ls -l /usr/local/bin/psocdude
 -rwxr-xr-x 1 root root 512060 מרץ 23 10:22 /usr/local/bin/psocdude
-
+```
 for config
+```
  ls -l /usr/local/etc/psocdude.conf
 -rw-rw-rw- 1 root root 33952 מרץ 23 15:34 /usr/local/etc/psocdude.conf
-
+```
 
 and make bynary executable + change owner if need
 
 MUST WORK
- 
+ ## End PRE
 
 My linux x86 computer 
-
+```
  proger@proger-945GCM-S2L:~$ hostnamectl
    Static hostname: proger-945GCM-S2L
          Icon name: computer-desktop
@@ -42,9 +44,9 @@ My linux x86 computer
   Operating System: Ubuntu 18.04.6 LTS
             Kernel: Linux 4.15.0-213-generic
       Architecture: x86
-
+```
 psocdude use libraries 	  
-	  
+```	  
  ldd psocdude
         linux-gate.so.1 (0xb7efe000)
         libelf.so.1 => /usr/lib/i386-linux-gnu/libelf.so.1 (0xb7e92000)
@@ -52,4 +54,4 @@ psocdude use libraries
         libc.so.6 => /lib/i386-linux-gnu/libc.so.6 (0xb7c96000)
         libz.so.1 => /lib/i386-linux-gnu/libz.so.1 (0xb7c77000)
         /lib/ld-linux.so.2 (0xb7f00000)
-
+```

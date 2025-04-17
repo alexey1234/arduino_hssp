@@ -4,7 +4,7 @@ This is a fork of the original arduino_hssp https://github.com/acidwise/arduino_
 
 As for me original branch have problem with TARGET VDD pin.
 
-Also board work with tty speed 56800 bod maximum, but maybe because I have usb cable 3 meters (?)
+Also board work with tty transfer speed 57600 maximum, but maybe because I have usb cable 3 meters (?)
 
 I will store sketch into src folder
 

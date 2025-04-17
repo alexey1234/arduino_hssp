@@ -1,3 +1,34 @@
+# PRE
+
+If you have troubles with compile psocdude branch by Dirk Petrautzki  https://github.com/miracoli/psocdude I put compilled binaries for x86 and x64 UBUNTUs
+
+Just download binary.zip and psocdude.conf.zip
+
+Unzip its
+
+Check  unzipped bynary with command ldd how it will work on your computer
+
+If all libraries presents you can simple copy files to folders
+
+cp psocdude /usr/local/bin/
+
+cp psocdude.conf /usr/local/etc/
+
+Check permisions for bynary 
+
+ ls -l /usr/local/bin/psocdude
+-rwxr-xr-x 1 root root 512060 מרץ 23 10:22 /usr/local/bin/psocdude
+
+for config
+ ls -l /usr/local/etc/psocdude.conf
+-rw-rw-rw- 1 root root 33952 מרץ 23 15:34 /usr/local/etc/psocdude.conf
+
+
+and make bynary executable + change owner if need
+
+MUST WORK
+ 
+
 My linux x86 computer 
 
  proger@proger-945GCM-S2L:~$ hostnamectl
@@ -12,7 +43,7 @@ My linux x86 computer
 
 psocdude use libraries 	  
 	  
- ldd /usr/local/bin/psocdude
+ ldd psocdude
         linux-gate.so.1 (0xb7efe000)
         libelf.so.1 => /usr/lib/i386-linux-gnu/libelf.so.1 (0xb7e92000)
         libpthread.so.0 => /lib/i386-linux-gnu/libpthread.so.0 (0xb7e72000)

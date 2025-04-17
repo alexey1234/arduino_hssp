@@ -36,6 +36,6 @@ psocdude -C psocdude.conf -p CY8C24894 -c arduino -P /dev/ttyACM0 -b 115200 -U f
 In my case  as Arduino nano it read device from command :
 
 ```
-psocdude -C /usr/local/etc/psocdude.conf -p CY8C24894 -c arduino -P /dev/ttyUSB0 -b 58600 -U flash:r:flash.bin:r
+psocdude -C /usr/local/etc/psocdude.conf -p CY8C24894 -c arduino -P /dev/ttyUSB0 -b 57600 -U flash:r:flash.bin:r
 ...
 

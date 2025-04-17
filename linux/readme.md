@@ -85,3 +85,21 @@ ldd psocdude
 	 /lib64/ld-linux-x86-64.so.2 (0x0000746178b67000)
 
 ```
+
+In 2 machines I cannot compile libhid? dut I think it no need
+```diff
+Configuration summary:
+----------------------
+DO HAVE    libelf
+DO HAVE    libusb
+DO HAVE    libusb_1_0
+DO HAVE    libftdi1
+DON'T HAVE libftdi
+-DON'T HAVE libhid
+DO HAVE    pthread
+DISABLED   doc
+ENABLED    parport
+DISABLED   linuxgpio
+
+```
+

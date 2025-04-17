@@ -89,7 +89,7 @@ ldd psocdude
 In 2 machines I cannot compile libhid? dut I think it no need
 ```diff
 Configuration summary:
-----------------------
+
 DO HAVE    libelf
 DO HAVE    libusb
 DO HAVE    libusb_1_0

@@ -657,11 +657,11 @@ void program_page() {
   return;
 }
 void prepare_target_reconnect() {
-	RemoveTargetVDD();
 	SetSCLKHiZ();
 	SetSDATAHiZ();
 	pinMode(XRES_PIN, INPUT);
 	digitalWrite(XRES_PIN, LOW);
+	RemoveTargetVDD();
 }
 
 	

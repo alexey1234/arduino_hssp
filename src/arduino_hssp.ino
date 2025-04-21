@@ -335,8 +335,9 @@
 //                               C main line
 //----------------------------------------------------------------------------
 */
-// Before compile sketch choice chip or chip family? as you need
+// Before compile sketch choice chip or chip family, as you need
 //In case other chip comment next line and uncommet your line
+// IMPORTANT! Also need add to psocdude.conf in Linux host values about flash memory !
 #define CY8C24x94
 // #define CY8CTST110
 // #define CY8CTST120
@@ -706,7 +707,7 @@ void setup() {
     param.chksm_setup = CHECKSUM_SETUP_22_24_28_29_TST120_TMG120_TMA120;
     param.prgm_block = PROGRAM_BLOCK_21_22_23_24_28_29_TST_TMG_TMA;
     param.multi_bank = false;
-     //END CHIP SPECIFIC */
+     //END CHIP SPECIFIC
     old_tick = millis();
 }
 

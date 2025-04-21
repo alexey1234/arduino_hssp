@@ -335,8 +335,35 @@
 //                               C main line
 //----------------------------------------------------------------------------
 */
-
+// Before compile sketch choice chip or chip family? as you need
+//In case other chip comment next line and uncommet your line
 #define CY8C24x94
+// #define CY8CTST110
+// #define CY8CTST120
+// #define CY8CTMG110
+// #define CY8CTMG120
+// #define CY8C21x23
+// #define CY8C21x34
+// #define CY8C21x45
+// #define CY8C22x45
+// #define CY8C23x33
+// #define CY8C24x23A
+// #define CY8C24x94
+// #define CY8C27x43
+// #define CY8C28xxx
+// #define CY8C29x66
+
+
+// 	Also revise setup() and correct values in this sections
+
+// /*******CHIP SPECIFIC  ******/  
+/*  param.prog_mode = RESET_MODE;
+    param.targ_voltage = TARGET_VOLTAGE_5V;
+    param.chksm_setup = CHECKSUM_SETUP_22_24_28_29_TST120_TMG120_TMA120;
+    param.prgm_block = PROGRAM_BLOCK_21_22_23_24_28_29_TST_TMG_TMA;
+    param.multi_bank = false;
+    //END CHIP SPECIFIC */
+
 #define TARGET_VOLTAGE_IS_5V
 #define SERIAL_TX_BUFFER_SIZE 256
 //added volatile uint8_t POWER_CYCLE_DELAY = 150;
@@ -673,13 +700,13 @@ void setup() {
 			 Serial.begin(57600);
 			break;
 	}
-	
+	/*******CHIP SPECIFIC  ******/
     param.prog_mode = RESET_MODE;
     param.targ_voltage = TARGET_VOLTAGE_5V;
     param.chksm_setup = CHECKSUM_SETUP_22_24_28_29_TST120_TMG120_TMA120;
     param.prgm_block = PROGRAM_BLOCK_21_22_23_24_28_29_TST_TMG_TMA;
     param.multi_bank = false;
-    
+     //END CHIP SPECIFIC */
     old_tick = millis();
 }
 

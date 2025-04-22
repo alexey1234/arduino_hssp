@@ -1,0 +1,50 @@
+proger@proger-945GCM-S2L:~/psocdude$ sudo /usr/local/bin/psocdude -D -v -C /usr/local/etc/psocdude.conf -c arduino -P /dev/ttyUSB0 -b 57600 -p CY8C24894 -U flash:r:flash1.bin:r
+[sudo] password for proger: 
+
+psocdude: Version 0.9.0, compiled on Mar 23 2025 at 10:21:14
+          Copyright (c) 2015 Dirk Petrautzki
+          Based on AVRDude 6.0.1
+
+          System wide configuration file is "/usr/local/etc/psocdude.conf"
+          User configuration file is "/home/proger/.avrduderc"
+          User configuration file does not exist or is not a regular file, skipping
+
+          Using Port                    : /dev/ttyUSB0
+          Using Programmer              : arduino
+          Overriding Baud Rate          : 57600
+          PSoc device                   : CY8C24894
+          Multi bank                    : yes
+          Taget voltage                 : 5V
+          Programming mode              : RESET_MODE
+          Checksum setup                : CHECKSUM_SETUP_24_24A
+          Program block                 : PROGRAM_BLOCK_21_22_23_24_28_29_TST_TMG_TMA
+          Memory Detail                 :
+
+                                   Block Poll               Page                       Polled
+            Memory Type Mode Delay Size  Indx Paged  Size   Size #Pages MinW  MaxW   ReadBack
+            ----------- ---- ----- ----- ---- ------ ------ ---- ------ ----- ----- ---------
+            signature      0     0     0    0 no          2    0      0     0     0 0x00 0x00
+            flash         65     6    64    0 yes     16384   64    256     0     0 0x00 0x00
+
+          Programmer Type : Arduino
+          Description     : Arduino
+          Hardware Version: 2
+          Firmware Version: 1.18
+          Topcard         : Unknown
+          Vtarget         : 5.0 V
+
+psocdude: AVR device initialized and ready to accept instructions
+
+Reading | ################################################## | 100% 0.01s
+
+psocdude: Device signature = 0x001f
+psocdude: reading flash memory:
+
+Reading | ################################################## | 100% 9.54s
+
+psocdude: writing output file "flash1.bin"
+
+psocdude done.  Thank you.
+
+proger@proger-945GCM-S2L:~/psocdude$ 
+

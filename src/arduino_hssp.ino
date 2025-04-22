@@ -657,6 +657,8 @@ void program_page() {
   return;
 }
 void prepare_target_reconnect() {
+	// This subroutine make pins to highZ state and switch Target voltage off
+	// For safely remove connector from working  board
 	SetSCLKHiZ();
 	SetSDATAHiZ();
 	pinMode(XRES_PIN, INPUT);
@@ -667,10 +669,10 @@ void prepare_target_reconnect() {
 	
 
 void setup() {
+  analogReference(EXTERNAL);
 	bit = digitalPinToBitMask(SDATA_PIN);
 	out = portOutputRegister(digitalPinToPort(SDATA_PIN));
 	SetTargetVDDStrong();
-	analogReference(EXTERNAL);
 	pinMode(SETUP_PIN, INPUT_PULLUP);
 	pinMode(COMP_PIN, INPUT_PULLUP);
 	pinMode(LED_BUILTIN, OUTPUT);
@@ -726,6 +728,9 @@ void loop() {
 	if (current_tick - old_tick >= 3000) {
 			old_tick = current_tick;
 			prepare_target_reconnect();
+			digitalWrite(LED_BUILTIN, LOW);
+			// remove after test
+    // Serial.println("speedtest");
 		}
 	}
 }

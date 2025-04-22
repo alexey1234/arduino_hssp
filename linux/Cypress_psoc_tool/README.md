@@ -1,6 +1,6 @@
 # Disc
 This is copy of <https://github.com/trou/cypress_psoc_tools> 
-trou, еhank you very much for your work
+trou, thank you very much for your work
 
 
 # cypress_psoc_tools

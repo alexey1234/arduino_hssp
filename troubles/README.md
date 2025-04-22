@@ -23,7 +23,7 @@ But then terminal was type me over 1 hour
 ```
 Resetting PSoC: KO
 ```
-I begin to check signals XRESET - present pulse to high  _______|_______
+I begin to check signals XRESET - present pulse low to high pulses, as 000000010000000
 Pulses on CLK and DATA pins show on picture
 ![](./pulses.jpg)
 I understand PSOC chip not response to programmer - I begin check all software and find something strangle into verbose  verbose output from psocdude

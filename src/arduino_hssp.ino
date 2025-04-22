@@ -670,6 +670,7 @@ void setup() {
 	bit = digitalPinToBitMask(SDATA_PIN);
 	out = portOutputRegister(digitalPinToPort(SDATA_PIN));
 	SetTargetVDDStrong();
+	analogReference(EXTERNAL);
 	pinMode(SETUP_PIN, INPUT_PULLUP);
 	pinMode(COMP_PIN, INPUT_PULLUP);
 	pinMode(LED_BUILTIN, OUTPUT);

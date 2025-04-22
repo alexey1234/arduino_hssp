@@ -27,7 +27,7 @@ def hexdump(src, length=16, sep='.'):
     print ''.join(lines)
 
 global ser
-ser = serial.Serial('/dev/ttyACM0', 115200, timeout=0.5)  # open serial port
+ser = serial.Serial('/dev/ttyUSB0', 57600, timeout=0.5)  # open serial port
 
 REGS = { 0xF0 : "A", 0xF1 : "F1",
 0xF2 : "F2", 0xF3 : "X", 0xF4 : "PC", 0xF5 : "PC", 0xF6 : "SP", 0xF7 :
@@ -279,8 +279,8 @@ def full_flash_dump():
             except Exception as e:
                 print e
                 ser.close()
-                os.system("timeout -s KILL 1s picocom -b 115200 /dev/ttyACM0 2>&1 > /dev/null")
-                ser = serial.Serial('/dev/ttyACM0', 115200, timeout=0.5)  # open serial port
+                os.system("timeout -s KILL 1s picocom -b 57600 /dev/ttyUSB0 2>&1 > /dev/null")
+                ser = serial.Serial('/dev/ttyUSB0', 57600, timeout=0.5)  # open serial port
                 continue
             print "%05d %02X %02X %02X" % (delay,
                                            read_regb(0xf1),
@@ -308,8 +308,8 @@ def csum_at(delay, count):
         except Exception as e:
             print e
             ser.close()
-            os.system("timeout -s KILL 1s picocom -b 115200 /dev/ttyACM0 2>&1 > /dev/null")
-            ser = serial.Serial('/dev/ttyACM0', 115200, timeout=0.5)  # open serial port
+            os.system("timeout -s KILL 1s picocom -b 57600 /dev/ttyUSB0 2>&1 > /dev/null")
+            ser = serial.Serial('/dev/ttyUSB0', 57600, timeout=0.5)  # open serial port
             continue
     return read_ramb(0xF8)|(read_ramb(0xF9)<<8)
 
@@ -354,8 +354,8 @@ def sample_csum():
                 except Exception as e:
                     print e
                     ser.close()
-                    os.system("timeout -s KILL 1s picocom -b 115200 /dev/ttyACM0 2>&1 > /dev/null")
-                    ser = serial.Serial('/dev/ttyACM0', 115200, timeout=0.5)  # open serial port
+                    os.system("timeout -s KILL 1s picocom -b 57600 /dev/ttyUSB0 2>&1 > /dev/null")
+                    ser = serial.Serial('/dev/ttyUSB0', 57600, timeout=0.5)  # open serial port
                     continue
                 print "%05d %02X %02X %02X" % (delay+delta,
                                                read_regb(0xf1),

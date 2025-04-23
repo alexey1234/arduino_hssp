@@ -65,4 +65,14 @@ In my case  as Arduino nano it read device from command :
 ```
 psocdude -C /usr/local/etc/psocdude.conf -p -D CY8C24894 -c arduino -P /dev/ttyUSB0 -b 57600 -U flash:r:flash.bin:r
 ...
+##TODO
+Check support for parametrization by host.
+The parametrization packet is currently 5 bytes long and contains the following values:
+- programming_mode selection (power cycle vs external reset)
+- target_voltage selection
+- checksum_setup vector selection
+- program_block vector selection
+- multi_bank support selection
+Need check how it work - I plan add second Serial port to arduino (software serial ) and debug some data.
 
+Add support for use programmer with multiple target chips without recompile Arduino sketch. 

@@ -44,7 +44,7 @@ Showcurrent - Show current settings
 
 1. Measure target supply by command * *supply* *  . In this step Arduino measured voltage on PRE switch place, test board not receive any signal or Supply
 
-2. Setup serial interface baudrate for work. Available command is  * *baudrate 115200* * , * *baudrate 57600* *, * *baudrate 38400* *, * *baudrate 19200* *
+2. Setup serial interface baudrate for work. Available command is  __baudrate 115200__ , __baudrate 57600__, __baudrate 38400__, __baudrate 19200__
 
 3. Setup Target supply delay time (see explain into hardware folder).  Command is
    

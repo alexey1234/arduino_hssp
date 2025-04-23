@@ -18,7 +18,12 @@ I replace speed setting over terminal to 57600 and building begin to run over co
 sudo /usr/local/bin/psocdude -D -C /usr/local/etc/psocdude.conf -c arduino -P /dev/ttyUSB0 -b 57600 -p CY8C24894 -U flash:r:flash1.bin:r
 ```
 
-But file flash1.bin was strangle - I think flash is protected - so I must use trou work tool. 
+But file flash1.bin was strangle it attachet as flash1.bin
+![](./flash1.jpg)
+
+
+ - I think flash is protected - so I must use trou work tool. 
+
 
 I adopt psoc.py for my hardware, file placed in <ins>linux/Cypress_psoc_tool</ins> folder
 

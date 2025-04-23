@@ -24,6 +24,10 @@ SDATA -  5  -  9
 ```
 Can be changed in issp_defs.h and revise schematic connection (see schematic folder)
 
+## My board
+
+![](./schematic/test_result/programmer_hard_v3board.jpg)
+
 Then close SETUP switch, connected to pin 7 Arduino Then connect programmer to PC and communicate with it over serial port with baudrate 57600. 
 
 I make setup procedure over windows and arduino terminal, but putty also work.

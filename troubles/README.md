@@ -1,7 +1,7 @@
 ## Run with my hardware
 I connect Target board to Arduino and over terminal tested all terminal menu.
 
-Time delay for switch Supply power on|off measured as 860 usec, I choice software delay with measured values **target 1** serial command
+Time delay for switch Supply power on|off measured as 1910 usec, I choice software delay with measured values **target 1** serial command
 
 Then I measure Supply voltage **supply** serial command - show 4.94 Volt (_ _real 4.97 volt , FLUKE 12_ _)
 

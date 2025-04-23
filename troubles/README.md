@@ -27,7 +27,7 @@ But file flash1.bin was strangle it attachet as flash1.bin
 
 I adopt psoc.py for my hardware, file placed in <ins>linux/Cypress_psoc_tool</ins> folder
 
-When I run it I see as software connect to Target board 
+When I run psoc.py I see as software connect to Target board 
 ``` 
 ./psoc.py 
 syncing:  KO KO KO OK 

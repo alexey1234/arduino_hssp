@@ -1,33 +1,22 @@
-Currently in my building not work setup and cycle TARGET Vdd
+Currently in my building work setup and cycle TARGET Vdd
 
-I will wrote here about my work
+I write my troubles about my work in folder troubles
 
 
-I will rebuilt programmer? because I connect to board which have capacitors and other chips, so I mus to give more power to this pin.
+I rebuild programmer, because I connect to board which have capacitors and other chips, so I mus to give more power to this pin.
 
-I want replace lm7805 to switched supply 
+I build switched Power supply with switches ON and OFF on 200 Avper Mosfets ( from broken motherboard ) 
 
-fPowerCycleInitializeTargetForISSP(void) from issp_routines - after set target voltage it wait 1ms which not really
- ReStartTarget(void) from issp_routines
-	fragment
-	RemoveTargetVDD();
-    delayMicroseconds(POWER_CYCLE_DELAY); //150 usec delay is fantastic? not will work
-    ApplyTargetVDD();
-used into main progra  void end_pmode()
+But I see problem with parametrization from host (may be something wrong into psocdude )
 
-digitalread arduino take 4uS
-analog Read arduino takes about 0.1usec
-digitalwrite arduino take about  4uSec
+## support for parametrization by host.
+The parametrization packet is currently 5 bytes long and contains the following values:
+- programming_mode selection (power cycle vs external reset)
+- target_voltage selection
+- checksum_setup vector selection
+- program_block vector selection
+- multi_bank support selection
+Need check how it work - I plan add second Serial port to arduino (software serial ) and debug some data.
 
-May be need use more fast command, for example https://github.com/mikaelpatel/Arduino-GPIO/tree/master
-or use assembler into arduinoIDE assembler
-
-void somefunction(void) __attribute__((naked))
-{
-  asm volatile ("
-
- ; your assembly code here
-
-  ");
-}
-https://www.nongnu.org/avr-libc/user-manual/inline_asm.html
+## Planinig
+Add support for use programmer with multiple target chips. 

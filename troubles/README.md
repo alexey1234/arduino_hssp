@@ -48,7 +48,7 @@ sudo /usr/local/bin/psocdude -D -v -C /usr/local/etc/psocdude.conf -c arduino -P
 ```
 
 I put output to log.txt
-```
+```diff
 ~/psocdude$ sudo /usr/local/bin/psocdude -D -v -C /usr/local/etc/psocdude.conf -c arduino -P /dev/ttyUSB0 -b 57600 -p CY8C24894 -U flash:r:flash1.bin:r
 [sudo] password for proger: 
 

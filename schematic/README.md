@@ -18,7 +18,7 @@ There are  many capacitors on the board also , so turning these 5 Volts on and o
 
 I see more then 25 Amper peek curents during charge and discharge capacitor 100 uF on output.
 
-TODO - I want use external voltage reference.
+I  use external voltage reference.
 
 Time for charge and discharge some like 45 usec, so I add comparator for make delay as need.
 

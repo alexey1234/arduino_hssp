@@ -18,12 +18,13 @@ SDATA -  5  -  9
 __________
 used with my hardware board
 comparators pins   --> 6
-setup pin 		   --> 7
+setup pin	   --> 7
 voltage check pin ---> A0
+external reference 2.5V
 ```
 Use psocdude by miracoli https://github.com/miracoli/psocdude (requires linux) to flash the firmware: 
 ```
-psocdude -C psocdude.conf -p CY8C24894 -c arduino -P /dev/ttyACM0 -b 115200 -U flash:w:TM_Warthog_Throttle_v23.bin:r
+psocdude -C psocdude.conf -p CY8C24894 -c arduino -P /dev/ttyACM0 -b 57600 -U flash:w:flashname.bin:r
 ```
 
 

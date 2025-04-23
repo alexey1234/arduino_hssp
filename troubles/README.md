@@ -64,6 +64,8 @@ checksum_setup = CHECKSUM_SETUP_22_24_28_29_TST120_TMG120_TMA120;
 
 ***I undestand PSOC chip just dont know what it must do***
 
+But psoc.py not use psocdude, so I have trouble with PSOC chips (tested 3 boards
+
 2. flash mode show as 65, but defined as 0x41. Maybe psocdude simple convert hex to decimal?
 
 

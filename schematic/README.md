@@ -23,5 +23,3 @@ I  use external voltage reference.
 Time for charge and discharge some like 45 usec, so I add comparator for make delay as need.
 
 [See test results](./test_result/README.md)
-
-I begin rewrite Arduino programm 

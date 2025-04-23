@@ -47,9 +47,13 @@ Showcurrent - Show current settings
 2. Setup serial interface baudrate for work. Available command is  * *baudrate 115200* * , * *baudrate 57600* *, * *baudrate 38400* *, * *baudrate 19200* *
 
 3. Setup Target supply delay time (see explain into hardware folder).  Command is
+   
 **target 0** - In this case use delay by hardware comparators +150 usec, but timeON and timeOFF will displayed on terminal
+
 **target 1** -  In this case, the program determines the larger of timeON and timeOFF, adds 150 microseconds to it, and writes it to flash. This value will be used as a delay time during operation.
+
 **target 2** - In this case software will use default delay time 150 microseconds for switching supply.
+
 **target 3** - in this case we can see stored into EEPROM
 
 THATS all, you can disconnect external power supply, programmer from PC , **remove** SETUP switch and connect to PC with psocdude by miracoli https://github.com/miracoli/psocdude .

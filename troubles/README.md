@@ -66,8 +66,8 @@ psocdude: Version 0.9.0, compiled on Mar 23 2025 at 10:21:14
           PSoc device                   : CY8C24894
           Multi bank                    : yes
           Taget voltage                 : 5V
--         Programming mode              : RESET_MODE
-          Checksum setup                : CHECKSUM_SETUP_24_24A
+          Programming mode              : RESET_MODE
+-         Checksum setup                : CHECKSUM_SETUP_24_24A
           Program block                 : PROGRAM_BLOCK_21_22_23_24_28_29_TST_TMG_TMA
           Memory Detail                 :
 

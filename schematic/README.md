@@ -13,7 +13,7 @@ There are  many capacitors on the board also , so turning these 5 Volts on and o
 
 ## My programmer board schematic
 
-![](./programmer_hard_V2.jpg)
+![](./programmer_hard_V3.jpg)
 
 
 I see more then 25 Amper peek curents during charge and discharge capacitor 100 uF on output.

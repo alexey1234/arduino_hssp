@@ -19,4 +19,4 @@ I will use both methods - the delay can be adjusted and stored in its eeprom plu
 
 # My programmer
 
-![](./programmer_hard.jpg)
+![](./programmer_hard_v3board.jpg)

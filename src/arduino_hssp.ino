@@ -41,7 +41,7 @@
    -------------
      1 - RAW
      2 - GND
-     3 - 4
+     3 - 10
      4 - 8
      5 - 9
 */
@@ -365,8 +365,16 @@
     param.multi_bank = false;
     //END CHIP SPECIFIC */
 
+#if defined(SERIAL_TX_BUFFER_SIZE)
+	#undef SERIAL_TX_BUFFER_SIZE
+	#define SERIAL_TX_BUFFER_SIZE 256
+#endif
 #define TARGET_VOLTAGE_IS_5V
-#define SERIAL_TX_BUFFER_SIZE 256
+
+/* THis for debug !*/
+#define SERIALOUT 3
+#define TXONLY
+
 //added volatile uint8_t POWER_CYCLE_DELAY = 150;
 // ------ Declarations Associated with ISSP Files & Routines -------
 //     Add these to your project as needed.
@@ -376,10 +384,14 @@
 #include "stk500_protocol.h"
 #include <EEPROM.h>
 
-#define HWVER 2
+#define HWVER 3
 #define SWMAJ 1
-#define SWMIN 18
+#define SWMIN 19
+#ifdef TXONLY
+#include <TXOnlySerial.h>
 
+TXOnlySerial mySerial(SERIALOUT); // TX
+#endif
 unsigned char bBankCounter;
 unsigned int  iBlockCounter;
 unsigned int  iChecksumData;
@@ -712,6 +724,11 @@ void setup() {
     param.multi_bank = false;
      //END CHIP SPECIFIC
     old_tick = millis();
+#if defined(TXONLY)
+	mySerial.begin(1200);
+	mySerial.println("Hello, world?");
+	mySerial.println(42,HEX);
+#endif
 }
 
 void loop() {
@@ -729,8 +746,22 @@ void loop() {
 			old_tick = current_tick;
 			prepare_target_reconnect();
 			digitalWrite(LED_BUILTIN, LOW);
-			// remove after test
-    // Serial.println("speedtest");
+#if defined(TXONLY) 
+			mySerial.print("0 - ");
+			mySerial.println(param.prog_mode,HEX);
+			mySerial.print("1 - ");
+			mySerial.println(param.targ_voltage,HEX);
+			mySerial.print("2 - ");
+			mySerial.println(param.chksm_setup,HEX);
+			mySerial.print("3 - ");
+			mySerial.println(param.prgm_block,HEX);
+			mySerial.print("4 - ");
+			if (param.prgm_block) {
+				mySerial.println("TRUE");
+			} else {
+				mySerial.println("FALCE");
+			}
+#endif			
 		}
 	}
 }

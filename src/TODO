@@ -1,3 +1,12 @@
 - Add support for programming/verifying flash security data
 - Clean things up
 - Add comments
+-- debug
+1 Add second comport to arduino
+result check parameters at start
+0 - 0 /// param.prog_mode - defined at issp_externs.h RESET_MODE=0 POWER_CYCLE_MODE=1
+1 - 0 // param.targ_voltage defined at issp_externs.h TARGET_VOLTAGE_5V=0 TARGET_VOLTAGE_3_3V=1
+2 - 1 // param.chksm_setup  defined at issp_externs.h CHECKSUM_SETUP_21_23_27_TST110_TMG110=0 CHECKSUM_SETUP_22_24_28_29_TST120_TMG120_TMA120=1 CHECKSUM_SETUP_24_24A=2
+3 - 0 // param.prgm_block defined at issp_externs.h PROGRAM_BLOCK_21_22_23_24_28_29_TST_TMG_TMA=0 PROGRAM_BLOCK_27=1
+4 - FALCE // param.multi_bank defined at issp_externs.h as true or falce
+

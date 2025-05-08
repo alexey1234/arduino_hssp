@@ -95,6 +95,7 @@ def reset_psoc(quiet=False):
         if not quiet:
             print_nocr('Resetting PSoC: ')
         ser.write("\x49")
+        ser.write("\x20")
         res = ser.read(1)
         if res != "\x10":
             if not quiet:

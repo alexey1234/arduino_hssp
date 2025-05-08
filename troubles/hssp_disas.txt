@@ -1,0 +1,231 @@
+--== init1 ==--
+1100101000000000000000
+nop
+nop
+nop
+nop
+nop
+[DE E0 1C] wrreg CPU_F (f7), 0x00
+[DE C0 1C] wrreg SP (f6), 0x00
+[9F 07 5C] wrmem KEY1, 0x3A
+[9F 20 7C] wrmem KEY2, 0x03
+[DE A0 1C] wrreg PCh (f5), 0x00
+[DE 80 7C] wrreg PCl (f4), 0x03
+[9F 70 1C] wrmem POINTER, 0x80
+[DF 26 1C] wrreg opc1 (f9), 0x30
+[DF 48 1C] wrreg opc2 (fa), 0x40
+[DE 01 3C] wrreg A (f0), 0x09
+[DF 00 1C] wrreg opc0 (f8), 0x00
+[DF E2 5C] wrreg CPU_SCR0 (ff), 0x12
+
+--== init2 ==--
+[DE E0 1C] wrreg CPU_F (f7), 0x00
+[DE C0 1C] wrreg SP (f6), 0x00
+[9F 07 5C] wrmem KEY1, 0x3A
+[9F 20 7C] wrmem KEY2, 0x03
+[DE A0 1C] wrreg PCh (f5), 0x00
+[DE 80 7C] wrreg PCl (f4), 0x03
+[9F 70 1C] wrmem POINTER, 0x80
+[DF 26 1C] wrreg opc1 (f9), 0x30
+[DF 48 1C] wrreg opc2 (fa), 0x40
+[9F 40 3C] wrmem BLOCKID, 0x01
+[DE 00 DC] wrreg A (f0), 0x06
+[DF 00 1C] wrreg opc0 (f8), 0x00
+[DF E2 5C] wrreg CPU_SCR0 (ff), 0x12
+
+--== init3-3v ==--
+[DE E0 1C] wrreg CPU_F (f7), 0x00
+[DE 80 7C] wrreg PCl (f4), 0x03
+[DE A0 1C] wrreg PCh (f5), 0x00
+[DE C1 1C] wrreg SP (f6), 0x08
+[DF 0A 3C] wrreg opc0 (f8), 0x51
+[DF 3F 1C] wrreg opc1 (f9), 0xF8
+[DF 46 1C] wrreg opc2 (fa), 0x30
+[DF E2 5C] wrreg CPU_SCR0 (ff), 0x12
+nop
+[DE E0 1C] wrreg CPU_F (f7), 0x00
+[DE 80 7C] wrreg PCl (f4), 0x03
+[DE A0 1C] wrreg PCh (f5), 0x00
+[DE C1 1C] wrreg SP (f6), 0x08
+[DF 0C 1C] wrreg opc0 (f8), 0x60
+[DF 3D 5C] wrreg opc1 (f9), 0xEA
+[DF 46 1C] wrreg opc2 (fa), 0x30
+[DE E2 1C] wrreg CPU_F (f7), 0x10
+[DF E2 5C] wrreg CPU_SCR0 (ff), 0x12
+nop
+[DE E0 1C] wrreg CPU_F (f7), 0x00
+[DE 80 7C] wrreg PCl (f4), 0x03
+[DE A0 1C] wrreg PCh (f5), 0x00
+[DE C1 1C] wrreg SP (f6), 0x08
+[DF 0A 3C] wrreg opc0 (f8), 0x51
+[DF 3F 3C] wrreg opc1 (f9), 0xF9
+[DF 46 1C] wrreg opc2 (fa), 0x30
+[DF E2 5C] wrreg CPU_SCR0 (ff), 0x12
+nop
+[DE E0 1C] wrreg CPU_F (f7), 0x00
+[DE 80 7C] wrreg PCl (f4), 0x03
+[DE A0 1C] wrreg PCh (f5), 0x00
+[DE C1 1C] wrreg SP (f6), 0x08
+[DF 0C 1C] wrreg opc0 (f8), 0x60
+[DF 3D 1C] wrreg opc1 (f9), 0xE8
+[DF 46 1C] wrreg opc2 (fa), 0x30
+[DE E2 1C] wrreg CPU_F (f7), 0x10
+[DF E2 5C] wrreg CPU_SCR0 (ff), 0x12
+nop
+
+--== init3-5v ==--
+[DE E0 1C] wrreg CPU_F (f7), 0x00
+[DE 80 7C] wrreg PCl (f4), 0x03
+[DE A0 1C] wrreg PCh (f5), 0x00
+[DE C1 1C] wrreg SP (f6), 0x08
+[DF 0A 3C] wrreg opc0 (f8), 0x51
+[DF 3F 9C] wrreg opc1 (f9), 0xFC
+[DF 46 1C] wrreg opc2 (fa), 0x30
+[DF E2 5C] wrreg CPU_SCR0 (ff), 0x12
+nop
+[DE E0 1C] wrreg CPU_F (f7), 0x00
+[DE 80 7C] wrreg PCl (f4), 0x03
+[DE A0 1C] wrreg PCh (f5), 0x00
+[DE C1 1C] wrreg SP (f6), 0x08
+[DF 0C 1C] wrreg opc0 (f8), 0x60
+[DF 3D 5C] wrreg opc1 (f9), 0xEA
+[DF 46 1C] wrreg opc2 (fa), 0x30
+[DE E2 1C] wrreg CPU_F (f7), 0x10
+[DF E2 5C] wrreg CPU_SCR0 (ff), 0x12
+nop
+[DE E0 1C] wrreg CPU_F (f7), 0x00
+[DE 80 7C] wrreg PCl (f4), 0x03
+[DE A0 1C] wrreg PCh (f5), 0x00
+[DE C1 1C] wrreg SP (f6), 0x08
+[DF 0A 3C] wrreg opc0 (f8), 0x51
+[DF 3F BC] wrreg opc1 (f9), 0xFD
+[DF 46 1C] wrreg opc2 (fa), 0x30
+[DF E2 5C] wrreg CPU_SCR0 (ff), 0x12
+nop
+[DE E0 1C] wrreg CPU_F (f7), 0x00
+[DE 80 7C] wrreg PCl (f4), 0x03
+[DE A0 1C] wrreg PCh (f5), 0x00
+[DE C1 1C] wrreg SP (f6), 0x08
+[DF 0C 1C] wrreg opc0 (f8), 0x60
+[DF 3D 1C] wrreg opc1 (f9), 0xE8
+[DF 46 1C] wrreg opc2 (fa), 0x30
+[DE E2 1C] wrreg CPU_F (f7), 0x10
+[DF E2 5C] wrreg CPU_SCR0 (ff), 0x12
+nop
+
+--== id-setup ==--
+[DE E2 1C] wrreg CPU_F (f7), 0x10
+[DC 00 5C] wrreg OSC_CR0 (e0), 0x02
+[DE E0 1C] wrreg CPU_F (f7), 0x00
+[DE C0 1C] wrreg SP (f6), 0x00
+[9F 07 5C] wrmem KEY1, 0x3A
+[9F 20 7C] wrmem KEY2, 0x03
+[DE A0 1C] wrreg PCh (f5), 0x00
+[DE 80 7C] wrreg PCl (f4), 0x03
+[9F 70 1C] wrmem POINTER, 0x80
+[DF 26 1C] wrreg opc1 (f9), 0x30
+[DF 48 1C] wrreg opc2 (fa), 0x40
+[9F 40 1C] wrmem BLOCKID, 0x00
+[DE 00 DC] wrreg A (f0), 0x06
+[DF 00 1C] wrreg opc0 (f8), 0x00
+[DF E2 5C] wrreg CPU_SCR0 (ff), 0x12
+
+--== bulk-erase ==--
+[9F 82 BC] wrmem CLOCK, 0x15
+[9F CA DC] wrmem DELAY, 0x56
+[DE E0 1C] wrreg CPU_F (f7), 0x00
+[DE C0 1C] wrreg SP (f6), 0x00
+[9F 07 5C] wrmem KEY1, 0x3A
+[9F 20 7C] wrmem KEY2, 0x03
+[DE A0 1C] wrreg PCh (f5), 0x00
+[DE 80 7C] wrreg PCl (f4), 0x03
+[9F 70 1C] wrmem POINTER, 0x80
+[DF 26 1C] wrreg opc1 (f9), 0x30
+[DF 48 1C] wrreg opc2 (fa), 0x40
+[DE 00 BC] wrreg A (f0), 0x05
+[DF 00 1C] wrreg opc0 (f8), 0x00
+[DF E2 5C] wrreg CPU_SCR0 (ff), 0x12
+
+--== verify-setup ==--
+[DE E0 1C] wrreg CPU_F (f7), 0x00
+[DE C0 1C] wrreg SP (f6), 0x00
+[9F 07 5C] wrmem KEY1, 0x3A
+[9F 20 7C] wrmem KEY2, 0x03
+[DE A0 1C] wrreg PCh (f5), 0x00
+[DE 80 7C] wrreg PCl (f4), 0x03
+[9F 70 1C] wrmem POINTER, 0x80
+[DF 26 1C] wrreg opc1 (f9), 0x30
+[DF 48 1C] wrreg opc2 (fa), 0x40
+[DE 00 3C] wrreg A (f0), 0x01
+[DF 00 1C] wrreg opc0 (f8), 0x00
+[DF E2 5C] wrreg CPU_SCR0 (ff), 0x12
+
+--== program-block ==--
+[9F 8A 9C] wrmem CLOCK, 0x54
+[9F CA DC] wrmem DELAY, 0x56
+[DE E0 1C] wrreg CPU_F (f7), 0x00
+[DE C0 1C] wrreg SP (f6), 0x00
+[9F 07 5C] wrmem KEY1, 0x3A
+[9F 20 7C] wrmem KEY2, 0x03
+[DE A0 1C] wrreg PCh (f5), 0x00
+[DE 80 7C] wrreg PCl (f4), 0x03
+[9F 70 1C] wrmem POINTER, 0x80
+[DF 26 1C] wrreg opc1 (f9), 0x30
+[DF 48 1C] wrreg opc2 (fa), 0x40
+[DE 00 5C] wrreg A (f0), 0x02
+[DF 00 1C] wrreg opc0 (f8), 0x00
+[DF E2 5C] wrreg CPU_SCR0 (ff), 0x12
+
+--== secure ==--
+[9F 8A 9C] wrmem CLOCK, 0x54
+[9F CA DC] wrmem DELAY, 0x56
+[DE E0 1C] wrreg CPU_F (f7), 0x00
+[DE C0 1C] wrreg SP (f6), 0x00
+[9F 07 5C] wrmem KEY1, 0x3A
+[9F 20 7C] wrmem KEY2, 0x03
+[DE A0 1C] wrreg PCh (f5), 0x00
+[DE 80 7C] wrreg PCl (f4), 0x03
+[9F 70 1C] wrmem POINTER, 0x80
+[DF 26 1C] wrreg opc1 (f9), 0x30
+[DF 48 1C] wrreg opc2 (fa), 0x40
+[DE 00 9C] wrreg A (f0), 0x04
+[DF 00 1C] wrreg opc0 (f8), 0x00
+[DF E2 5C] wrreg CPU_SCR0 (ff), 0x12
+
+--== set-block-num ==--
+[9F 5F FC] wrmem BLOCKID, 0xFF
+
+--== read-byte ==--
+[B7 E0 04] rdmem 0xBF, 0x00
+
+--== checksum-setup ==--
+[DE E0 1C] wrreg CPU_F (f7), 0x00
+[DE C0 1C] wrreg SP (f6), 0x00
+[9F 07 5C] wrmem KEY1, 0x3A
+[9F 20 7C] wrmem KEY2, 0x03
+[DE A0 1C] wrreg PCh (f5), 0x00
+[DE 80 7C] wrreg PCl (f4), 0x03
+[9F 70 1C] wrmem POINTER, 0x80
+[DF 26 1C] wrreg opc1 (f9), 0x30
+[DF 48 1C] wrreg opc2 (fa), 0x40
+[9F 40 1C] wrmem BLOCKID, 0x00
+[DE 00 FC] wrreg A (f0), 0x07
+[DF 00 1C] wrreg opc0 (f8), 0x00
+[DF E2 5C] wrreg CPU_SCR0 (ff), 0x12
+
+--== read-sec-HSSP ==--
+[DE E0 1C] wrreg CPU_F (f7), 0x00
+[DE C0 1C] wrreg SP (f6), 0x00
+[9F 07 5C] wrmem KEY1, 0x3A
+[9F 20 7C] wrmem KEY2, 0x03
+[9F A0 1C] wrmem 0xFD, 0x00
+[9F E0 1C] wrmem 0xFF, 0x00
+[DE A0 1C] wrreg PCh (f5), 0x00
+[DE 80 7C] wrreg PCl (f4), 0x03
+[9F 70 1C] wrmem POINTER, 0x80
+[DF 26 1C] wrreg opc1 (f9), 0x30
+[DF 48 1C] wrreg opc2 (fa), 0x40
+[DE 02 1C] wrreg A (f0), 0x10
+[DF 00 1C] wrreg opc0 (f8), 0x00
+[DF E2 5C] wrreg CPU_SCR0 (ff), 0x12
+

@@ -37,7 +37,9 @@ But then terminal was type me over 1 hour
 ```
 Resetting PSoC: KO
 ```
-I begin to check signals XRESET - present pulse low to high pulses, as 000000010000000
+~~I begin to check signals XRESET - present pulse low to high pulses, as 000000010000000~~
+
+This problem is solved, but there is still one (not last) - the board does not want to accept initialization vectors yet
 
 Pulses on CLK and DATA pins show on picture
 ![](./pulses.jpg)
